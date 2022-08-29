@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-queue< pair <int, int>> q;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -8,7 +7,9 @@ int main(){
     int t;
     cin >> t;
     while (t--)
-    {
+    {   
+        
+        queue< pair <int, int>> q;
         int n, m;
         cin >> n >> m;
         int doc[101];
@@ -28,15 +29,18 @@ int main(){
                 if(max < q.front().first){
                     max = q.front().first;
                 }
+                pair<int, int> tmp = q.front();
+                q.pop();
+                q.push(tmp);
             }
             //최대값이 나올때까지 pop & push
-            while(q.front().first==max){
+            while(q.front().first!=max){
                 pair<int, int> tmp = q.front();
                 q.pop();
                 q.push(tmp);
             }
             if(q.front().second == m) break;
-            q.pop();
+            else q.pop();
             seq++;
         }
         cout << seq << "\n";
